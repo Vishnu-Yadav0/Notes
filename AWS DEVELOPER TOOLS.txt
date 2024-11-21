@@ -1,0 +1,101 @@
+AWS DEVELOPER TOOLS - DevOps CI/CD pipeline tools in AWS
+
+AWS CDK
+AWS CodeArtifact
+AWS CodeBuild
+AWS CodeCommit
+AWS CodeDeploy
+AWS CodeGuru Security --> Detects, tracks and fix code vulnerabilities
+AWS Codepipeline
+AWS CodeStar  --> Sample projects / Code
+AWS CLI
+AWS SDK and Tools
+AWS X-Ray ---> Analyze and debug production and distributed applications.
+
+AWS X-Ray :
+	
+	Collect Traces ---> Record Traces ---> View Service map --> Analyze issues 
+
+
+Java Build Tools : Gradle, maven, Apache Ant
+
+Terraform LifeCycles:
+init
+fmt
+validate
+plan
+apply
+refresh
+destroy
+
+Maven LifeCycles:
+clean
+validate
+compile
+test
+install
+verify
+package
+deploy
+
+
+
+Maven LifeCycles:
+Static code analysis using SonarQube
+clean
+validate
+compile
+test
+package
+verify
+install
+deploy
+delivery
+SmokeTest
+
+ Smoke testing is a preliminary software testing method used to verify the stability and functionality of a build before more detailed testing. Here are the key points:
+
+Purpose:
+
+Smoke tests reveal simple failures severe enough to reject a prospective software release.
+They cover critical functionality to assess whether the main features of the software appear to work correctly.
+
+Questions Addressed by Smoke Testing:
+Basic questions include:
+
+“Does the program run?”
+“Does the user interface open?”
+“Does clicking the main button do anything?”
+
+
+pom.xml --> maven file
+
+ A buildspec.yml file is a collection of build commands and related settings in YAML format used by AWS CodeBuild to run a build. 
+
+
+
+AWS CodePipeline is a continuous delivery service to model visualize and automate the steps required to release your software. It helps you model and configure the different stages of the software release process.
+
+CodeCommit provides source and version control for our code.
+CodeBuild deals with the steps and test phase in CD Environment.
+
+EBS --> PaaS
+Elastic BeanStalk Must Permissions  : AWSElasticBeanstalkManagedUpdatesCustomerRolePolicy
+AWSElasticBeanstalkEnhancedHealth
+
+
+
+
+
+DataBases:
+
+Amazon DocumentDB - MongoDB
+Amazon DynamoDB - NoSQL 
+Amazon RDS  - RDBMS- MySQL, PostgreSQL, MariaDB, Oracle BYOL,
+Amazon Neptune - Graph DataBase Service popular for API's
+Amazon Redshift - Data warehouse
+Amazon DataBase Migration Service - Databse Migration
+Amazon LiveStream Analaytics
+
+
+

@@ -1,0 +1,114 @@
+mkdir foldername --> creating a empty folder
+cd foldername --> moving into the folder directory
+git init --> creates a new repository
+ or we can do it by a single command as I mentioned below. 
+git init foldername  --> create a empty directory and make it a new repository
+
+
+git add . ---> moves the files from working area to the staging area
+
+git commit -m "message" --> moves the files from staging area to local repository
+
+
+git status --> To check git status and files status it gives the details about what happened to the file whether they are added into the staging area or not and whether everything added into the local repo or not is there any modifications.
+
+git log --> displays the logs of the files ( activities in the repo)
+
+git log --oneline --> prints the logs in one line
+
+git diff --staged version/head~1/head,etc..--> returns the differences between the version files
+
+git diff --> displays the difference among the files in the staging area and working area
+
+git ls-files --stage  --> shows files which are added to the staging area
+
+git checkout version filename --> reverts to the version (that means it degrade or removes the new version or modifications and comebacks to the version you have mentioned)
+
+git rm --cached a.txt --> removes the file from the stage area and makes it untracked
+
+git checkout master
+
+git checkout head~1 a.txt
+git checkout head~1 b.txt
+
+this will get the deleted files back to the staging area
+
+then use git commit -m "message"
+
+this will move the files to the local repo and brings the file back to our system
+
+
+
+$ git log --oneline
+04662b1 (HEAD -> master) adding new files
+a7e0d11 modified
+12c81f6 added .ignore
+205b75e adding back the two files
+8a80085 new
+cfd9dea add
+d3d3640 added head and body
+b23a413 going to commit with bare minimum html tags
+d3e7422 initial version
+
+
+i waana go to version "adding back the two files" and delete the files after that
+
+git reset --hard 205b75e
+
+it will delete the updates and comes back to the old version .
+
+
+
+Ignoring Files in Git or not to track
+
+to ignore a file -->add the files into .gitignore [stores file name and pattern]
+create a .gitignore file and add a pattern or filename into it 
+(eg: *txt) this will ignore all the filenames ending with txt
+if you waana really  add after adding it into the ignore file then use -f
+
+git add -f filename
+
+
+To rename files in git 
+
+--> git mv <filename> <new_filename>
+--> git add
+--> git commit
+--> git status (to check)
+
+Git is a distributed version control system - where the entire commit history with every change is duplicated at the remote end.
+
+git push origin master
+
+git pull origin master
+
+if the user manually did some changes and if those changes are not in your local repo then when you try to push anything from local repo to remote repo, then it fails to push and generates error
+
+then you have to pull the changes from the remote repo and then push your changes.
+
+
+A branch is a method of requesting a new working directory and staging area.
+
+A Git branch is just a pointer to the commits; it does not change the contents of the repository.
+
+
+$ git branch <branch_name>  --> Creates a new branch
+
+$ git branch ---> Lists all branches in the current repository
+
+$ git checkout <branch_name>  --> Switch to branches
+
+$ git merge <branch_name>  --> Merges branches
+
+
+To Create a new branch and switch to it;
+
+$ git checkout -b <branch_name>
+
+
+To view the difference between master and branch;
+$ git diff master..branch
+
+$ git merge branchname --> to merge the branch to master
+
+$ git log --oneline --decorate --graph
