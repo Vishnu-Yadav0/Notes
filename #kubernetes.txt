@@ -1,0 +1,45 @@
+#kubernetes
+
+How many nodes are part of the cluster?
+Type kubectl get nodes in the terminal on the right and count the number of nodes that are listed.
+
+
+Create a new pod with the nginx image.
+Run the command: kubectl run nginx --image=nginx
+
+
+
+What is the image used to create the new pods?
+
+You must look at one of the new pods in detail to figure this out.
+
+Run the command kubectl describe pod newpods-<id> and look under the containers section.
+
+
+
+Which nodes are these pods placed on?
+
+You must look at all the pods in detail to figure this out.
+
+Run the command kubectl describe pod newpods-<id> and look at the node field.
+Alternatively run kubectl get pods -o wide and check for the node the pod is placed on.
+
+
+Delete the webapp Pod.
+Once deleted, wait for the pod to fully terminate.
+Run the command: kubectl delete pod webapp
+
+
+
+Create a new pod with the name redis and the image redis123.
+
+
+Use a pod-definition YAML file. And yes the image name is wrong!
+
+
+Ingress acts as a smart entry point for traffic coming from the internet to services inside your Kubernetes cluster.
+It saves public IPs, manages routing rules, and ensures efficient traffic management.
+You use Ingress to make your applications accessible to users with just one domain or IP address.
+
+
+Service which is a method for exposing a network application that is running as one or more Pods in your cluster.” Service is a static IP address or a permanent IP address that can be attached to the Pod. We need Service because the life cycles of Service and the Pod are not connected, so even if the Pod dies, the Service and its IP address will stay so we don’t have to change that endpoint every time the Pod dies.

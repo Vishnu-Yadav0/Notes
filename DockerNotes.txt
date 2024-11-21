@@ -1,0 +1,102 @@
+docker compose up
+docker compose stop --> it stops the containers
+docker compose down --> this stops and removes the containers
+docker compose -f abc.yml up -d --> to give a specific compose file name
+docker container ls
+docker ps -a --> to list out all the containers both running and stopped
+docker ps
+docker rm containerid/name
+docker rmi imagename/imageid
+docker rm $(docker ps -aq)
+docker build -t vishnuyadav799/portfolio:latest .
+docker run -name myportfolio -p 9090:8080 -d vishnuyadav799/portfolio:latest
+
+docker run --name mydb -e POSTGRES_PASSWORD=password -e POSTGRES_USER=myuser -e POSTGRES_DB=mydb -d postgres
+
+docker run --name adminer -p 8080:8080 --link mydb:postgres -d adminer
+
+----------------------docker compose-------------------------------
+
+---
+services:
+  mydb:
+	image: postgres
+	container_name: postgres_db
+	environment:
+		POSTGRES_PASSWORD: password
+		POSTGRES_USER: myuser
+		POSTGRES_DB: mydb
+	
+ adminer:
+	image: adminer
+	container_name: adminer
+	ports:
+	  - 8080:8080
+	links:
+	  - mydb:postgres
+	#we can use depends_on instead of links
+
+...
+
+
+------------------------------------------------------------------------
+
+Docker Volumes:
+
+1. Simple docker volumes
+
+2. Sharable docker volumes
+
+3. Docker volume containers
+
+
+----------------------------------------------------------------------------
+
+docker run -v /tmp -d ubuntu
+docker inspect ubuntu
+docker run --volumes-from c1 --name c2 -d ubuntu
+docker run --volumes-from c1 --name c3 -d ubuntu
+
+
+docker volume ls
+docker volume create newvolume
+docker volume inspect newvolume
+
+
+-------------------------------------------------------------------------------
+#Install git,tree and apache2 in a ubuntu os and and save the container as a image [ build the container as a image]
+
+docker run --name u1 -it ubuntu
+In container:
+	apt-get update
+	apt-get install -y git,tree,apache2
+	exit
+docker commit u1 customized_ubuntu_os
+
+
+docker commit containername imagename_to_be_saved  --> this command build the image of a container.
+
+
+--------------------------------------------------------------------------------
+
+
+Important keywords in Dockerfile:
+
+1. FROM  #to take a base image
+2. MAINTAINER  #this keyword is used to add a authority or signature to the file like yaa vishhnu created this 
+3. RUN  #To Run Linux Commands
+4. WORKDIR #to mention the working directory or to change the directory
+5. COPY #to copy files from hostserver to the image 
+6. ADD  #both copy and add are used to copy files from hostserver to the image but
+	#there is advantage of add , we can copy the files even from the remote servers to the image
+7. USER #to mention the default user
+8. VOlUME # to attach volumes
+9. EXPOSE #to mention which port should be export as a container port and hostport
+10. LABEL # To add details about the image
+11. SHELL #to mention which type of shell is required
+12. ENV # to add environment variables
+13. CMD
+14. ENTRYPOINT 
+
+
+

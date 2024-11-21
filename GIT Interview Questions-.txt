@@ -1,0 +1,92 @@
+GIT Interview Questions:-
+
+(Q)Explain the difference between Centralized Distribute Version Control System?
+
+(A) Centralized Version control system:
+
+	- uses a central server to store all the versions of files
+	- no developer has a copy of all the files in the local system
+	- if the central server crashes. entire data of the project will be lost.
+
+Distributed Version Control system
+
+	- Every developer has a copy of all the version of the code of their system
+	- improves the ability to work offline and does not rely on single location for backups
+	- there is no threat even if the server crashes
+
+(Q) What is the git command that downloads any repository from GitHub to your computer?
+(A) git clone
+
+(Q) How to Push a file from your local system on to GitHub repository using Git?
+(A) First, connect the local repository to your remote repository:
+	git remote add origin [copied web address]
+    Second, push your file to the remote repository:
+	git push origin master
+
+(Q) How is bare repository different from the standard way of initializing a 
+Git repository?
+(A) Using the standard way git init
+
+	- you create a working directory with git init
+	- A .git subfolder is created with all the git related revision history
+
+ Using the bare way git init --bare
+	- Does not contain any working or checked our copy of source files
+	- Bare repositories store git revision history in the root folder of your repository instead of .git subfolder
+
+(Q)command to rename a file in git
+(A)git mv 
+
+(Q)what is the process to revert a commit that has already been pushed and made public?
+(A) There are two processes through which you can revert a commit:
+	- Remove or fix the bad file in a new commit and push it to the remote repository. 	  Then commit it to the remote repository using:
+		git commit -m "commit message"
+	
+	- Create a new commit that undoes all the changes that were made in the bad commit.
+	  Use the following command:
+	 	git revert <commit id>
+		example: git revert 56de-0938f
+
+(Q)Explain the difference b/w git fetch and git pull.
+(A)git fetch
+	- git fetch only downloads new data from a remote repository
+	- does not integrate any of this new data into your working files
+	- git fetch can be done any time to update the remote-tracking branches
+	cmd : git fetch origin
+	      git fetch --all
+
+git pull
+	-git pull updates the current HEAD branch with the latest changes from the remote 	server
+	-it downloads new data and integrates it with the current working files
+	-it tries to merge remote changes with your local ones
+	cmd: git pull origin master
+
+
+(Q) What is Git Stash?
+(A) git stash is a powerful feature in Git that allows you to temporarily save changes in your working directory that you don’t want to commit immediately. This is useful when you need to switch branches or work on something else but want to come back to your changes later. Stashing essentially puts your changes on a "stack" of unfinished work, so you can reapply them later.
+
+stash your changes --> git stash
+This command saves your modified tracked files and staged changes and then reverts them to the state of the last commit.
+
+List stashes --> git stash list
+This command shows a list of stashed changes.
+
+Apply the latest stash ---> git stash apply
+This command reapplies the most recently stashed changes to your working directory but does not remove them from the stash list.
+
+Apply a specific stash --> git stash apply stash@{index}
+This command reapplies a specific stash identified by its index from the stash list.
+
+Pop the latest stash --> git stash pop
+This command reapplies the most recently stashed changes and removes them from the stash list.
+
+Pop a specific stash --> git stash pop stash@{index}
+This command reapplies a specific stash and removes it from the stash list.
+
+Drop a specific stash --> git stash drop stash@{index}
+This command removes a specific stash from the stash list without applying it.
+
+Clear all stashes --> git stash clear
+This command removes all stashes from the stash list.
+
+

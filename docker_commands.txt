@@ -1,0 +1,137 @@
+docker_commands:
+
+Build an Image from a Dockerfile
+docker build -t <image_name> 
+
+Build an Image from a Dockerfile without the cache
+docker build -t <image_name> . –no-cache 
+
+List local images
+docker images 
+
+Delete an Image
+docker rmi <image_name> 
+
+Remove all unused images
+docker image prune 
+
+Login into Docker
+docker login -u <username>
+
+Publish an image to Docker Hub
+docker push <username>/<image_name>
+
+Search Hub for an image
+docker search <image_name>
+
+Pull an image from a Docker Hub
+docker pull <image_name
+
+Start the docker daemon
+docker -d
+
+Get help with Docker. Can also use –help on all subcommands
+docker --help
+
+Display system-wide information
+docker info
+
+Create and run a container from an image, with a custom name:
+docker run --name <container_name> <image_name>
+
+Run a container with and publish a container’s port(s) to the host.
+docker run -p <host_port>:<container_port> <image_name>
+
+Run a container in the background
+docker run -d <image_name>
+
+Start or stop an existing container:
+docker start|stop <container_name> (or <container-id>)
+
+Remove a stopped container:
+docker rm <container_name>
+
+Open a shell inside a running container:
+docker exec -it <container_name> sh
+
+Fetch and follow the logs of a container:
+docker logs -f <container_name>
+
+To inspect a running container:
+docker inspect <container_name> (or <container_id>)
+
+To list currently running containers:
+docker ps
+
+List all docker containers (running and stopped):
+docker ps --all
+
+View resource usage stats
+docker container stats
+
+
+docker run -d --name c3opsweb -p 80:80 imagename:tag
+
+
+A curated list of Docker Compose samples:-
+https://github.com/docker/awesome-compose
+
+
+
+To stop all the containers at once, run the command: docker stop $(docker ps -aq)
+
+To remove all the stopped containers at once, run the command: docker rm $(docker ps -aq)
+
+Run the command docker run -d --name webapp nginx:1.14-alpine and check the status of created container by docker ps command.
+
+
+"Run an instance of kodekloud/simple-webapp with a tag blue and map port 8080 on the container to 38282 on the host.?"
+
+Run the command: docker run -p 38282:8080 kodekloud/simple-webapp:blue
+
+You can run this container in the background after adding the -d flag.
+
+
+
+Run a container named blue-app using image kodekloud/simple-webapp and set the environment variable APP_COLOR to blue. Make the application available on port 38282 on the host. The application listens on port 8080.
+
+Ans: Run the command : docker run -p 38282:8080 --name blue-app -e APP_COLOR=blue -d kodekloud/simple-webapp
+
+To know the env field from within a webapp container, run docker exec -it blue-app env
+
+
+-d ==>  detached mode.
+
+POrts:
+Host_PORT:CONTAINER_PORT
+
+
+what location are the files related to the docker containers and images stored?
+/var/lib/docker  
+
+TASK:
+Run a mysql container again, but this time map a volume to the container so that the data stored by the container is stored at /opt/data on the host.
+
+
+Use the same name : mysql-db and same password: db_pass123 as before. Mysql stores data at /var/lib/mysql inside the container.
+
+SOL:
+Run the command: docker run -v /opt/data:/var/lib/mysql -d --name mysql-db -e MYSQL_ROOT_PASSWORD=db_pass123 MySQL
+
+TASK:
+
+Deploy a web application named webapp using the kodekloud/simple-webapp-mysql image. Expose the port to 38080 on the host.
+
+The application makes use of two environment variable:
+1: DB_Host with the value mysql-db.
+2: DB_Password with the value db_pass123.
+Make sure to attach it to the newly created network called wp-mysql-network.
+
+
+Also make sure to link the MySQL and the webapp container.
+
+
+SOL:
+Run the command: docker run --network=wp-mysql-network -e DB_Host=mysql-db -e DB_Password=db_pass123 -p 38080:8080 --name webapp --link mysql-db:mysql-db -d kodekloud/simple-webapp-MySQL
+
+

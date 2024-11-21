@@ -1,0 +1,115 @@
+standard region partition
+AWS GovCloud partition
+China region partition
+
+after login into the AWS we get 17 regions access by default.
+
+33 regions , 105 available zones
+
+class A ---> 0-126     0.0.0.0
+class B ---> 128-191
+class C ---> 191-223
+class D ---> 224-239
+class E ---> 240-155
+
+127 IP address is a local server.
+
+Private IP address space:
+
+From		To			Subnet mask
+10.0.0.0	10.255.255.255		255.0.0.0
+172.16.0.0	172.31.255.255		255.255.0.0
+192.168.0.0	192.168.255.255		255.255.255.0
+
+Public IP address: Have to buy
+
+From		To
+
+
+AWS EC2 instance t2.micro can handle 10-15 concurrent uses. more than that it will start buffering and the server may crash.
+
+10.0.0.0/16 --> 65536 servers(instances) max
+1 t2.micro instance can handle 10- 15 users
+
+t1.micro -> very low performance
+t2.nano,t2.micro,t2.small,t2.medium, t2.large --> Low to moderate 
+
+t2.nano,t2.micro,t2.small -->  1 CPU
+t2.medium.t2.large --> 2 CPUs
+t2.xlarge --> 4 CPUs
+t2.2xlarge --> 8 CPUs
+
+t3.nano, t3.micro, t3.small, t3.medium, t3.large --> 2 CPUs
+
+default network is associated with default available zones in the region
+
+4 Ways to create VPC
+GUI
+CLI
+SDK (boto3, go ,java, .net)
+TERRAFORM
+ 
+how many ways to create resources in AWS
+GUI
+CLI
+SDK
+Terraform
+Ansible
+CloudFormation
+
+
+
+
+Load balancer: routes the traffic to the target group(instances,containers, and IP addresses).
+Load Balancing automatically distributes your incoming traffic across multiple targets, such as EC2 instances, containers, and IP addresses, in one or more Availability Zones to ensure no single instance is overwhelmed, improving availability and reliability of your application.
+
+If the CPU utilisation is greater than 75% then wait for 300sec(5 minutes), do launch a new instance using Launch Template.
+
+While the load balancer manages the distribution of traffic, it works in conjunction with the Auto Scaling group to handle scaling operations. When the Auto Scaling group adds or removes instances, it updates the load balancer accordingly.
+
+/-Top Level Directory.
+
+Application Load balancer - Layer 7, path based and port based
+
+targets - EC2 Instances, Containers, Lambdas, Hybrid Infrastructure
+
+as per the best practice we have to select 2 availability zones.
+
+
+Network Load balancer - handles millions of requests per second
+	- Layer 4
+	- Forward TCP/UDP Traffic to your instances
+	- Less Latency ~100ms (vs 400 ms for ALB)
+	- NLB has one static IP per Availability Zone, and Supports assigning Elastic IP
+	- NLB are used for extreme performance, TCP/UDP traffic
+	- Target Groups : Instances, Private IPaddress, Application Load Balancer
+	- Health check support the TCP/HTTP & HTTPS Protocols
+targets - EC2 Instances, Containers, Lambdas, Hybrid Infrastructure
+
+
+Gateway Load balancer -  data packet prevention, used mostly for secure purpose it identifies if any blocked ports are there or is there any malicious activities then it notifies. 
+
+
+Loadbalancer is free where as, Autoscaling is chargeable 
+
+
+
+ALP - Path Based
+
+if we dont have the path in both server then after few requests it generates error Not Found
+
+Here, When we are using Path based and if we want to do certain things then we have to add rule listener conditions. 
+
+First of all we have to create a new target group by giving the path we using as path base, then we have to go to the load balancer and add listerner rule as path and give the path (ex: /course/*) then save it.
+
+Now load the page using dns name and see, even after many requests it doesn't redirect it to another instance.
+
+AWS Certificate Manager is a web service for provisioning, managing, and deploying Secure Sockets Layer/Transport Layer Security (SSL/TLS) certificates for use with AWS services.
+
+
+
+3 Tier Architecture
+#physical layer/presentation layer,[Client Tier]
+#application layer[Logic Tier] 
+# database layer [Data Tier]
+

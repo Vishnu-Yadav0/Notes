@@ -1,0 +1,19 @@
+Bash :
+
+ls *.md
+ls [[:upper:]]*
+ls [[:lower:]]*
+ls [CO]*
+ls S*
+ls *.md
+ls *.??
+
+
+whereis command to search for the files
+
+find command used to find the files using expressions called name , type , directory structure.
+
+env --> viewing environmental variables 
+export newvar=value  --> adding environmental variables
+
+ls -l dir/ &>output.txt    ---> Redirects the output and the standard error into the file

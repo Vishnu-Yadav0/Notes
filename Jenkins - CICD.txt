@@ -1,0 +1,194 @@
+Jenkins - CI/CD --> Continuous Integration / Continuous Deployment
+
+mostly for build process we use maven.
+
+Artifact / set up file --> Converting the code files into setup file called artifact --> This process is called Build Process. --> then the artifact is sent to QA environment for Testing if any error is found then the file is sent to the development team . the process goes on until the artifact is bug free or stable, then the application is Deployed into the Production Server (Customer can access from here and use it).   ---> The whole Process is called Build and Release Life Cycle. We can automate it in Jenkins.
+
+whenever developers add code to the GIT repository Jenkins automatically downloads it and convert it into artifact and then it is sent to QA if any bug found it will send it to the Dev Team until the application is Bug Free or Stable. and then it is send to Production Environment.
+
+Stages:-
+Continuous Download --> Downloading Code from the Git repository
+Continuous Build --> Converting the code into the artifact
+Continuous Deployment--> placing it in QA Environment 
+Continuous Testing --> Testing the application 
+((staging environment takes play for unit testing, UAT, etc..,) and then it goes to production environment)
+Continuous Delivery --> Delivering the Application to the Production Server
+
+ALL these stages are automated using Jenkins.
+
+
+Maven Life Cycle Stages:
+--------------------------
+ 
+1. prepare-resources
+2. validate
+3. compile
+4. test
+5. package (in this stage the code is converted into artifact)
+6. install
+7. deploy 
+
+
+7.71.1 ---> 7 is major version, 71 is minor version , 1 is patch
+
+source /etc/environment  -->compiling 
+
+CSCAT --> Continuous Static Code Analysis
+
+CBCR --> Continuous Binary Code Repository
+
+
+docker images
+
+docker ps ---> active containers
+
+docker ps -a  --> every images and containers
+
+docker start containerid
+
+docker info
+
+docker build -t vishnuyadav799/tomcat:v1 . --> to build img
+docker run -it imageid
+
+docker exec -it containerid /bin/bash   --> to open the image file and configure
+
+docker run -d --name c3opsweb -p 80:80 imagename:tag --> #command to start the container   -p refers to publish
+
+
+
+docker system prune -a --> Cleaning of all the containers and images
+
+we use docker-compose file to run more than 1 container, to run docker-compose.yml files you should have docker-compose plugin. sudo apt install docker-compose
+
+sudo chown -R $USER:$USER *
+
+docker-compose down --> shutdowns the containers
+docker-compose up ---> starts the containers
+
+minikube: for a single container
+
+Kubeadm:Kubeadm handles tasks such as creating certificates, generating the necessary configuration files, and bootstrapping the cluster control plane components (like the API server, controller manager, and scheduler).It’s commonly used in conjunction with other tools or scripts to set up Kubernetes clusters on various environments, including on-premises, cloud, and virtual machines.
+
+kubectl: Kubectl is the command-line tool used to interact with Kubernetes clusters. It provides an interface to manage and control Kubernetes resources.
+
+Kubelet: Kubelet is the primary agent that runs on each node in a Kubernetes cluster. It ensures that containers are running in pods as expected.
+
+we will have one cluster controller and remaining all are considered as nodes.
+
+In K8s cluster there will be pod network in pod network there will be pods in pods the container will run.
+
+K8s-node components:
+kubelet
+kube-proxy
+
+containerization Technology : Docker,ContainerD, CRI-O
+container orchestration Technology: k8(1 - Minikube and 2 - Kubeadm)
+
+kubeadm - bootstraps the cluster
+kubectl - command line tool
+kubelet - agen
+
+
+
+
+
+
+
+
+
+us-east-1a |
+us-east-1b |
+us-east-1c | ----> Availability Zones
+us-east-1d |
+us-east-1e |
+
+------------------
+us-east-1         |
+us-east-2         |
+us-west-1         | -----> Regions
+eu-central-1      |
+ap-south-2        |
+__________________|
+
+No.of subnets in a region is directly proportional to No.of availability zones in a region.
+
+
+
+Terraform commands :-
+----------------------
+
+terraform init
+terraform fmt
+terraform validate
+terraform plan
+terraform apply
+terraform refresh
+terraform destroy 
+
+
+
+configuration management tools:
+Puppet --> purchase based
+chef
+saltstack
+ansible --> open source
+terraform
+
+
+if we want to use ansible as a cli its free, if you want to use graphical ansible its cost based.
+
+
+windows command to find any file or directory
+where /r D:\ *.rar
+where /r C:\Users\ *.rar
+
+Project Object Model (POM)
+ansible roles
+
+templates - configuration files
+vars - high priority variables
+defaults - low variable 
+
+files - scripting files
+
+ 
+Syntax Check:
+    $ ansible-playbook --syntax-check web.yml
+
+
+Preview a Playbook:
+    $ ansible-playbook --check web.yml
+
+
+Execute a Playbook:
+    $ ansible-playbook web.yml
+
+
+
+# How to setup Passwordless Authentication
+
+## EC2 Instances
+
+### Using Public Key
+
+```
+ssh-copy-id -f "-o IdentityFile <PATH TO PEM FILE>" ubuntu@<INSTANCE-PUBLIC-IP>
+```
+
+- ssh-copy-id: This is the command used to copy your public key to a remote machine.
+- -f: This flag forces the copying of keys, which can be useful if you have keys already set up and want to overwrite them.
+- "-o IdentityFile <PATH TO PEM FILE>": This option specifies the identity file (private key) to use for the connection. The -o flag passes this option to the underlying ssh command.
+- ubuntu@<INSTANCE-IP>: This is the username (ubuntu) and the IP address of the remote server you want to access.
+
+### Using Password 
+
+- Go to the file `/etc/ssh/sshd_config.d/60-cloudimg-settings.conf`
+- Update `PasswordAuthentication yes`
+- Restart SSH -> `sudo systemctl restart ssh`
+
+
+ 
+ssh-copy-id -f "-o IdentityFile /home/automation/.ssh/id_rsa" ubuntu@35.156.74.44
+
+ssh-copy-id -f "-o IdentityFile ~/Downloads/Frankfurt_KeyPair.pem" ubuntu@3.76.203.116
